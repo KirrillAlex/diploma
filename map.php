@@ -5,7 +5,7 @@
 
     let accessToken = 'pk.eyJ1IjoiYWxla3NlaWt1ZGFzaGtpbiIsImEiOiJja2h3MHBnczAwNHl0MndueDNqNXkzdm83In0.tkvGzNMUnq9SJ_AX-b3l4g';
 
-    const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
+    const attribution = '&copy;';
     const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tiles = L.tileLayer(tileUrl, {attribution});
     tiles.addTo(mymap);

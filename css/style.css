@@ -766,13 +766,14 @@ a:focus {
 }
 
 .welcome__heading {
-  margin-bottom: 20px;
-
+  position: relative;
+  bottom: 100px;
   font-size: 38px;
 }
 
 .welcome__text {
-  margin-bottom: 50px;
+  position: relative;
+  bottom: 40px;
 
   font-size: 16px;
   line-height: 1.8;
