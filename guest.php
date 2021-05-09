@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -21,7 +19,7 @@
         </a>
 
         <div class="main-header__side">
-          <a class="main-header__side-item button button--transparent" href="#" onclick="buttonOnClick()">Войти</a>
+          <a class="main-header__side-item button button--transparent" href="#" onclick="login()">Войти</a>
         </div>
       </header>
 
@@ -35,11 +33,14 @@
             <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
           </div>
 
-          <a class="welcome__button button" href="register.php">Зарегистрироваться</a>
+          <a class="welcome__button button"  href="#" onclick="register()">Зарегистрироваться</a>
           <form action="guest.php" method="post">
           </form>
         </section>
-        <?php include_once('register_form.php'); ?>
+        <?php 
+          include_once('register_form.php'); 
+          include_once('login_form.php'); 
+        ?>
       </div>
     </div>
     
