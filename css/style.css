@@ -333,8 +333,6 @@ a:focus {
 .content__main {
   flex-grow: 1;
   padding: 0 30px 0 27px;
-  border: 2px solid black;
-  height: 500px;
 }
 
 .content__main-heading {
@@ -711,7 +709,6 @@ a:focus {
 .form__label {
   display: inline-block;
   margin-bottom: 7px;
-  padding-top: 10px;
 
   font-size: 13px;
 }
@@ -809,7 +806,7 @@ a:focus {
 }
 
 .content__main-heading--left {
-  padding-left: 240px;
+  padding-left: 400px;
 }
 .content__main-heading--color {
   color: black;

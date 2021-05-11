@@ -1,13 +1,8 @@
 <?php
+    include_once('connect.php');
     $_COOKIE['city'] = 'Саранск';
-    $db_host       = 'localhost';
-    $db_name       = 'problem';
-    $db_username   = 'root';
-    $db_password   = 'root';
-    $connect = mysqli_connect( $db_host, $db_username, $db_password, $db_name );
-
     $query_rate = "SELECT rating FROM problems";
-    $rating = mysqli_fetch_all(mysqli_query($connect_to_db, $query_rate), MYSQLI_ASSOC);
+    $rating = mysqli_fetch_all(mysqli_query($connect, $query_rate), MYSQLI_ASSOC);
     $rating_array = [];
     foreach ($rating as $value) {
       $rating_array[] = $value['rating'];
@@ -21,12 +16,12 @@
     for($i = 0; $i < 5; $i++) {
       $temp = $end_rate[$i];
       $query = "SELECT name, rating, coords FROM problems WHERE rating = '$temp'";
-      $bd_rate[]= mysqli_fetch_all(mysqli_query($connect_to_db, $query), MYSQLI_ASSOC);
+      $bd_rate[]= mysqli_fetch_all(mysqli_query($connect, $query), MYSQLI_ASSOC);
     } 
 
     if ($_POST['change_button'] && isset($_POST['change_town'])) {
       $check_query = "SELECT city FROM problems GROUP by city";
-      $check = mysqli_fetch_all(mysqli_query($connect_to_db, $check_query), MYSQLI_ASSOC);
+      $check = mysqli_fetch_all(mysqli_query($connect, $check_query), MYSQLI_ASSOC);
       $town_array = [];
       foreach ($check as $value) {
         $town_array[] = $value['city'];
@@ -45,7 +40,7 @@
     else if ($_POST['sort_town']) {
       $city = $_COOKIE['city'];
       $new_query = "SELECT rating FROM problems WHERE city = '$city' ORDER BY rating DESC";
-      $new = mysqli_fetch_all(mysqli_query($connect_to_db, $new_query), MYSQLI_ASSOC);
+      $new = mysqli_fetch_all(mysqli_query($connect, $new_query), MYSQLI_ASSOC);
       $temp_bd = [];
       $counter = 0;
       if (count($new) < 5) {
@@ -58,7 +53,7 @@
         $temp = $new[$counter];
         $super_temp = $temp['rating'];
         $another_query = "SELECT name, rating, coords FROM problems WHERE rating = '$super_temp' AND city = '$city'";
-        $temp_bd[]= mysqli_fetch_all(mysqli_query($connect_to_db, $another_query), MYSQLI_ASSOC);
+        $temp_bd[]= mysqli_fetch_all(mysqli_query($connect, $another_query), MYSQLI_ASSOC);
         $counter++;
       }
       $bd_rate = $temp_bd;
@@ -94,9 +89,9 @@
 
         <div class="main-header__side-item user-menu">
           <div class="user-menu__data">
-            <p>Пользователь</p>
+            <p><?php echo $_SESSION['user']['firstName'];?></p>
 
-            <a href="#">Выйти</a>
+            <a href="logout.php">Выйти</a>
           </div>
         </div>
       </div>

@@ -5,28 +5,16 @@
 
     let accessToken = 'pk.eyJ1IjoiYWxla3NlaWt1ZGFzaGtpbiIsImEiOiJja2h3MHBnczAwNHl0MndueDNqNXkzdm83In0.tkvGzNMUnq9SJ_AX-b3l4g';
 
-    const attribution = '&copy;';
+    const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
     const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tiles = L.tileLayer(tileUrl, {attribution});
     tiles.addTo(mymap);
      <?php
-
-        $db_host       = 'localhost';
-        $db_name       = 'problem';
-        $db_username   = 'root';
-        $db_password   = 'root';
-        $connect_to_db = mysqli_connect( $db_host, $db_username, $db_password, $db_name );
-
-        if(!$connect_to_db){
-            echo "Не удалось подключиться к БД!";
-            echo "Код ошибки errno: " . mysqli_connect_errno() . PHP_EOL;
-            echo "Текст ошибки error: " . mysqli_connect_error() . PHP_EOL;
-        }
-
-        mysqli_query($connect_to_db,'SET NAMES UTF8');
+        include_once('connect.php');
+        mysqli_query($connect,'SET NAMES UTF8');
 
         $myquery = "SELECT coords, name, description FROM `problems`";
-        $res = mysqli_query($connect_to_db, $myquery);
+        $res = mysqli_query($connect, $myquery);
 
         while ($row = mysqli_fetch_array( $res ))
         {
@@ -90,7 +78,7 @@
                       $coords = $_COOKIE["coords"];
                       $coords = mb_substr($coords, 7, 16);
                       $myquery = "SELECT name, description, (select photo from photos phot where phot.problemid = prob.id) FROM `problems` prob where coords='".$coords."'";
-                      $res = mysqli_query($connect_to_db, $myquery);
+                      $res = mysqli_query($connect, $myquery);
                       $row = mysqli_fetch_array( $res )
                     ?>
                     <h3 align="center"> <?php echo $row[0]; ?></h3>
@@ -162,13 +150,13 @@
 
       $query_problems = "INSERT INTO problems (name, description, imageAvailability, date, userid, city, rating, coords) 
       VALUES('$name', '$description', '1', '$now' ,'1', '$town', '0', '54.17389, 45.22131')";
-      $result_problems = mysqli_query($connect_to_db, $query_problems);
+      $result_problems = mysqli_query($connect, $query_problems);
       $query_id = "SELECT id from problems WHERE userid = '1' AND name = '$name'";
-      $result_id = mysqli_query($connect_to_db, $query_id);
+      $result_id = mysqli_query($connect, $query_id);
       $id = mysqli_fetch_all($result_id, MYSQLI_ASSOC);
       $id_now = $id[0]['id'];
       $query_photos = "INSERT INTO photos (problemid, userid, date, photo) VALUES('$id_now', '1', '$now', '$file_url')";
-      $result_photos = mysqli_query($connect_to_db, $query_photos);
+      $result_photos = mysqli_query($connect, $query_photos);
     }
     
 ?>

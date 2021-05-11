@@ -1,9 +1,5 @@
 <?php
-    $db_host       = 'localhost';
-    $db_name       = 'problem';
-    $db_username   = 'root';
-    $db_password   = 'root';
-    $connect = mysqli_connect( $db_host, $db_username, $db_password, $db_name );
+    include_once('connect.php');
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['auth_button']){
         $form = $_POST;
@@ -20,7 +16,7 @@
         $user = mysqli_fetch_array(mysqli_query($connect, $main_query), MYSQLI_ASSOC);
         if (empty($errors) && $user) {
 
-            if (password_verify($form['password'], $user['pass'])) {
+            if (password_verify($form['password'], $user['password'])) {
                 $_SESSION['user'] = $user;
                 header('Location:  index.php');
             }
@@ -56,13 +52,13 @@
       </a>
 
       <div class="main-header__side">
-        <a class="main-header__side-item button button--transparent" href="auth.php">Войти</a>
+        <a class="main-header__side-item button button--transparent" href="register.php">Регистрация</a>
       </div>
     </header>
 
     <div class="content">
 
-      <main class="content__main">
+      <main class="content__main content__main-heading--left">
         <h2 class="content__main-heading">Вход на сайт</h2>
 
         <form class="form" action="auth.php" method="post" autocomplete="off">

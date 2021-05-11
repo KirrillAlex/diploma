@@ -1,3 +1,6 @@
+<?php
+  include_once('connect.php');
+?>
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -19,7 +22,7 @@
         </a>
 
         <div class="main-header__side">
-          <a class="main-header__side-item button button--transparent" href="#" onclick="login()">Войти</a>
+          <a class="main-header__side-item button button--transparent" href="auth.php">Войти</a>
         </div>
       </header>
 
@@ -30,17 +33,14 @@
           <div class="welcome__text">
             <p>«Дела в порядке» — это веб приложение для удобного ведения списка дел. Сервис помогает пользователям не забывать о предстоящих важных событиях и задачах.</p>
 
-            <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки.</p>
+            <p>После создания аккаунта, пользователь может начать вносить свои дела, деля их по проектам и указывая сроки. </p>
           </div>
 
-          <a class="welcome__button button"  href="#" onclick="register()">Зарегистрироваться</a>
+          <a class="welcome__button button" href="register.php">Зарегистрироваться</a>
           <form action="guest.php" method="post">
           </form>
         </section>
-        <?php 
-          include_once('register_form.php'); 
-          include_once('login_form.php'); 
-        ?>
+
       </div>
     </div>
     
