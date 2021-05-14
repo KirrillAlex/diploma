@@ -5,12 +5,13 @@
 
     let accessToken = 'pk.eyJ1IjoiYWxla3NlaWt1ZGFzaGtpbiIsImEiOiJja2h3MHBnczAwNHl0MndueDNqNXkzdm83In0.tkvGzNMUnq9SJ_AX-b3l4g';
 
-    const attribution = '&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors';
+    const attribution = '';
     const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tiles = L.tileLayer(tileUrl, {attribution});
     tiles.addTo(mymap);
      <?php
         include_once('connect.php');
+
         mysqli_query($connect,'SET NAMES UTF8');
 
         $myquery = "SELECT coords, name, description FROM `problems`";
@@ -78,8 +79,7 @@
                       $coords = $_COOKIE["coords"];
                       $coords = mb_substr($coords, 7, 16);
                       $myquery = "SELECT name, description, (select photo from photos phot where phot.problemid = prob.id) FROM `problems` prob where coords='".$coords."'";
-                      $res = mysqli_query($connect, $myquery);
-                      $row = mysqli_fetch_array( $res )
+                      $row = mysqli_fetch_array(mysqli_query($connect, $myquery));
                     ?>
                     <h3 align="center"> <?php echo $row[0]; ?></h3>
                     <div class="pl-left">
