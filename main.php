@@ -95,9 +95,17 @@
 
         <div class="main-header__side-item user-menu">
           <div class="user-menu__data">
-            <p><?php echo $_SESSION['user']['firstName'];?></p>
-
-            <a href="logout.php">Выйти</a>
+            <p><?php 
+                $user = $_SESSION['user']['firstName'];
+                if (!$user){
+                  echo "<a href=\"guest.php\">Войти</a>";
+                }
+                else{
+                  echo "<a href=\"personal area.php\">$user</a>";
+                  echo "<br><a href=\"logout.php\">Выйти</a>";
+                }
+            ?>
+            </p>
           </div>
         </div>
       </div>

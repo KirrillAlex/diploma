@@ -36,7 +36,7 @@
 
         function markerOnClick(e)
         {
-          amountClicks++
+          amountClicks++;
           if(amountClicks == 2 && whereClick == e.latlng){
             amountClicks = 0;
             document.cookie = "coords="+e.latlng;
